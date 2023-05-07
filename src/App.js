@@ -1,24 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCount } from "./reducers/reposReducer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Main from './components/main/Main.jsx';
+import './app.less';
 
 const App = () => {
-    const dispatch = useDispatch()
-    // useSelector - позволяет получать какие-либо данные из состояния
-    const count = useSelector(state => state.repos.count)
-
-    function onCountClick() {
-        // вызываем dispatch, в который передаём функцию setCount, которая будет
-        // возвращать action и передадим в неё какое-либо число
-        dispatch(setCount(5))
-    }
+    // const dispatch = useDispatch()
 
     return (
-        <div className="app">
-            {/* при нажати на кнопку изменяем count */}
-            <button onClick={() => onCountClick()}>COUNT</button>
-            <div className="">{count}</div>
-        </div>
+        <BrowserRouter>
+            <div className="container">
+                <Routes >
+                    <Route path="/" element={<Main />}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 };
 
